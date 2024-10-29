@@ -1,0 +1,217 @@
+:root {
+  /* Hier könnt ihr das Aussehen eures Halloween-Puzzles anpassen. */
+  /* Probiert die Hintergründe bg1 bis bg6 aus */
+  /*                       VVV        */
+  --background-image: url(/bg1.png);
+  /*                       ^^^       */
+
+  /* Hier könnt ihr einstellen, wie dunkel der Hintergrund der Zellen sein soll. */
+  /*                                       VVVV  Probiert hier Werte zwischen 0.1 und 0.9 aus */
+  --grid-background-color: rgba(0, 0, 0, 0.43);
+  /*                                       ^^^^ */
+
+  --border-color: rgba(166, 255, 0, 0.6);
+  --selected-color: rgba(81, 248, 15, 0.8);
+  --highlighted-color: rgba(0, 195, 255, 0.8);
+  --border-width: 1px;
+}
+
+/* ===== AB HIER NICHTS MEHR ÄNDERN!! ===== */
+
+@font-face {
+  font-family: 'Creepster Regular';
+  src: url('/Creepster-Regular.ttf');
+}
+
+html {
+  font-family: 'Creepster Regular';
+  color: #93bd21;
+}
+
+#message {
+  font-size: 40px;
+  height: 50px;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-image: var(--background-image);
+  background-size: cover;
+  background-position: center bottom;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  position: relative;
+  width: calc(var(--cells-horz) * var(--cell-size));
+  height: calc(var(--cells-vert) * var(--cell-size));
+}
+
+#status {
+  display: flex;
+  justify-content: space-between;
+  width: calc(var(--cells-horz) * var(--cell-size));
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+#grid,
+#symbols {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(var(--cells-horz), 1fr);
+  grid-template-rows: repeat(var(--cells-vert), 1fr);
+}
+
+#grid > * {
+  border-top: var(--border-width) solid var(--border-color);
+  border-left: var(--border-width) solid var(--border-color);
+  box-sizing: border-box;
+  background-color: var(--grid-background-color);
+}
+
+#grid .border-right {
+  border-right: var(--border-width) solid var(--border-color);
+}
+
+#grid .border-bottom {
+  border-bottom: var(--border-width) solid var(--border-color);
+}
+
+#symbols > * {
+  position: absolute;
+  width: var(--cell-size);
+  height: var(--cell-size);
+  background-position: center center;
+  background-repeat: no-repeat;
+  transition: transform var(--animation-duration) ease;
+}
+
+#symbols > .selected {
+  box-shadow:  0 0 20px var(--selected-color), inset 0 0 30px var(--selected-color);
+}
+
+#symbols > .highlighted {
+  box-shadow:  0 0 20px var(--highlighted-color), inset 0 0 30px var(--highlighted-color);
+}
+
+.fade-in {
+  animation: fade-in var(--animation-duration) normal;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.disappear {
+  animation: disappear-frames var(--animation-duration) normal;
+}
+
+@keyframes disappear-frames {
+  to {
+    background-color: #93bd21;
+  }
+}
+
+.bomb {
+  background-image: url(/game-item1.png);
+  background-size: 65%;
+}
+
+.pumpkin {
+  background-image: url(/game-item2.png);
+  background-size: 60%;
+}
+
+.sweet-blue {
+  background-image: url(/game-item3.png);
+  background-size: 80%;
+}
+
+.ghost {
+  background-image: url(/game-item4.png);
+  background-size: 65%;
+}
+
+.skull {
+  background-image: url(/game-item5.png);
+  background-size: 60%;
+}
+
+.sweet-green {
+  background-image: url(/game-item6.png);
+  background-size: 80%;
+}
+
+.sweet-pink {
+  background-image: url(/game-item7.png);
+  background-size: 80%;
+}
+
+.eye {
+  background-image: url(/game-failed-eye.png);
+  background-size: 70%;
+}
+
+.heart {
+  background-image: url(/wheel-prize1.png);
+  background-size: 60%;
+}
+
+.potion {
+  background-image: url(/wheel-prize2.png);
+  background-size: 60%;
+}
+
+
+#gameOverDialog {
+  background-color: black; /* Dark background */
+  color: var(--selected-color); /* Halloween-themed text color */
+  border: 5px solid var(--selected-color); /* Border with Halloween color */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 50px var(--selected-color); /* Spooky glow */
+  font-family: 'Creepster Regular'; /* Optional, a Halloween font */
+}
+
+#gameOverDialog div {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#gameOverDialog h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+#gameOverDialog button {
+  font-family: 'Creepster Regular'; /* Optional, a Halloween font */
+  background-color: orange;
+  color: black;
+  border: 2px solid black;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#gameOverDialog button:hover {
+  background-color: darkred;
+  color: white;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halloween Puzzle</title>
+  </head>
+  <body>
+    <div id="status">
+      <div>⏱️<span id="time"></span></div>
+      <div><span id="points"></span>🍫</div>
+    </div>
+    <div id="board">
+      <div id="grid"></div>
+      <div id="symbols"></div>
+    </div>
+    <div id="message"></div>
+
+    <dialog id="gameOverDialog">
+      <div>
+        <h2>Game Over</h2>
+        <button id="playAgainButton">Nochmal spielen</button>
+      </div>
+    </dialog>
+
+    <script src="src/main.ts" type="module"></script>
+  </body>
+</html>
